@@ -34,65 +34,66 @@ class _TeacherScreenState extends State<TeacherScreen> {
         automaticallyImplyLeading: false,
         centerTitle: true,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text('Email'),
-              Text(email.toString()),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text('Age'),
-              Text(age.toString()),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text('User Type'),
-              Text(type.toString()),
-            ],
-          ),
-          InkWell(
-            onTap: () async {
-              SharedPreferences sp = await SharedPreferences.getInstance();
-              sp.clear();
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()));
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(40),
-              child: Container(
-                height: 40,
-                width: double.infinity,
-                color: Colors.green,
-                child: const Center(
-                    child: Text(
-                  'logOut',
-                  style: TextStyle(color: Colors.white),
-                )),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Email'),
+                Text(email.toString()),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Age'),
+                Text(age.toString()),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('User Type'),
+                Text(type.toString()),
+              ],
+            ),
+            InkWell(
+              onTap: () async {
+                SharedPreferences sp = await SharedPreferences.getInstance();
+                sp.clear();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const LoginScreen()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(40),
+                child: Container(
+                  height: 40,
+                  width: double.infinity,
+                  color: Colors.blue,
+                  child: const Center(
+                      child: Text(
+                    'logOut',
+                    style: TextStyle(color: Colors.white),
+                  )),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

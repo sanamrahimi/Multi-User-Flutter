@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 sp.setString('age', ageController.text.toString());
 
                 // admin, student, teacher
-                sp.setString('userType', 'teacher');
+                sp.setString('userType', 'student');
 
                 sp.setBool('isLogin', true);
 
@@ -84,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Container(
                 height: 40,
                 width: double.infinity,
-                color: Colors.green,
+                color: Colors.blue,
                 child: const Center(
                     child: Text(
                   'Sign Up',
