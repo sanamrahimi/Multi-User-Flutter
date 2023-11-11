@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:multi_role_app/screens/home_screen.dart';
-import 'package:multi_role_app/screens/student_screen.dart';
-import 'package:multi_role_app/screens/teacher_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:multi_role_app/app/all_screens.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -20,7 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sign Up"),
+        title: const Text("Sign Up"),
         centerTitle: true,
       ),
       body: Padding(
@@ -31,30 +27,30 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             TextFormField(
               controller: emailController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Email',
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             TextFormField(
               controller: passwordController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Password',
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             TextFormField(
               controller: ageController,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Age',
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             InkWell(
@@ -63,28 +59,33 @@ class _LoginScreenState extends State<LoginScreen> {
                 sp.setString('email', emailController.text.toString());
                 sp.setString('age', ageController.text.toString());
 
-
                 // admin, student, teacher
                 sp.setString('userType', 'teacher');
 
                 sp.setBool('isLogin', true);
 
                 if (sp.getString('userType') == 'teacher') {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => TeacherScreen()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const TeacherScreen()));
                 } else if (sp.getString('userType') == 'student') {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => StudentScreen()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const StudentScreen()));
                 } else {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()));
                 }
               },
               child: Container(
                 height: 40,
                 width: double.infinity,
                 color: Colors.green,
-                child: Center(
+                child: const Center(
                     child: Text(
                   'Sign Up',
                   style: TextStyle(color: Colors.white),

@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:multi_role_app/screens/login_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:multi_role_app/app/all_screens.dart';
 
 class TeacherScreen extends StatefulWidget {
   const TeacherScreen({Key? key}) : super(key: key);
@@ -32,7 +30,7 @@ class _TeacherScreenState extends State<TeacherScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Teacher view'),
+        title: const Text('Teacher view'),
         automaticallyImplyLeading: false,
         centerTitle: true,
       ),
@@ -40,36 +38,36 @@ class _TeacherScreenState extends State<TeacherScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Email'),
+              const Text('Email'),
               Text(email.toString()),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Age'),
+              const Text('Age'),
               Text(age.toString()),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('User Type'),
+              const Text('User Type'),
               Text(type.toString()),
             ],
           ),
@@ -78,7 +76,7 @@ class _TeacherScreenState extends State<TeacherScreen> {
               SharedPreferences sp = await SharedPreferences.getInstance();
               sp.clear();
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()));
+                  MaterialPageRoute(builder: (context) => const LoginScreen()));
             },
             child: Padding(
               padding: const EdgeInsets.all(40),
@@ -86,7 +84,7 @@ class _TeacherScreenState extends State<TeacherScreen> {
                 height: 40,
                 width: double.infinity,
                 color: Colors.green,
-                child: Center(
+                child: const Center(
                     child: Text(
                   'logOut',
                   style: TextStyle(color: Colors.white),
