@@ -14,50 +14,43 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>{
-
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     isLogin();
-
   }
 
-  void isLogin()async{
+  void isLogin() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     bool isLogin = sp.getBool('isLogin') ?? false;
     String userType = sp.getString('userType') ?? '';
 
-    if(isLogin){
-
-      if(userType == 'student'){
-        Timer(Duration(seconds: 3), (){
+    if (isLogin) {
+      if (userType == 'student') {
+        Timer(Duration(seconds: 3), () {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => StudentScreen()));
         });
-      }else if(userType == 'teacher'){
-        Timer(Duration(seconds: 3), (){
+      } else if (userType == 'teacher') {
+        Timer(Duration(seconds: 3), () {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => TeacherScreen()));
         });
-      }else{
-        Timer(Duration(seconds: 3), (){
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => HomeScreen()));
+      } else {
+        Timer(Duration(seconds: 3), () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => HomeScreen()));
         });
       }
-    }else{
-      Timer(Duration(seconds: 3), (){
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => LoginScreen()));
+    } else {
+      Timer(Duration(seconds: 3), () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => LoginScreen()));
       });
     }
-
-
-
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +60,11 @@ class _SplashScreenState extends State<SplashScreen>{
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
+            Image.asset(
+              'assets/flutter_image.png',
+              width: double.infinity,
+              fit: BoxFit.fitHeight,
+            ),
           ],
         ),
       ),
