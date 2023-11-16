@@ -57,12 +57,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
             const SizedBox(
               height: 40,
             ),
-
             RoundButton(
                 height: 40,
                 buttonColor: Colors.blue,
                 title: 'Sign Up',
-
                 onPress: () async {
                   SharedPreferences sp = await SharedPreferences.getInstance();
                   sp.setString('email', emailController.text.toString());
@@ -70,7 +68,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   sp.setBool('isLogin', true);
 
                   // admin, student, teacher
-                  // sp.setString('userType', 'student');
+                  sp.setString('userType', 'teacher');
 
                   if (sp.getString('userType') == 'teacher') {
                     Navigator.pushNamed(context, RoutesName.teacherScreen);
@@ -79,7 +77,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   } else {
                     Navigator.pushNamed(context, RoutesName.home);
                   }
-            }),
+                }),
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:multi_role_app/utils/components/RoundButton.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utils/routes/routes_name.dart';
@@ -73,38 +74,27 @@ class _StudentScreenState extends State<StudentScreen> {
                     Text(type.toString()),
                   ],
                 ),
-                InkWell(
-                  onTap: () async {
-                    SharedPreferences sp =
-                        await SharedPreferences.getInstance();
-                    sp.clear();
-                    Navigator.pushNamed(context, RoutesName.signUp);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(40),
-                    child: Container(
-                      height: 40,
-                      width: double.infinity,
-                      color: Colors.blue,
-                      child: const Center(
-                          child: Text(
-                        'logOut',
-                        style: TextStyle(color: Colors.white),
-                      )),
-                    ),
-                  ),
+                const SizedBox(
+                  height: 40,
                 ),
-
+                RoundButton(
+                    title: 'Log Out',
+                    height: 40,
+                    onPress: () async {
+                      SharedPreferences sp =
+                          await SharedPreferences.getInstance();
+                      sp.clear();
+                      Navigator.pushNamed(context, RoutesName.signUp);
+                    }),
+                const SizedBox(
+                  height: 60,
+                ),
                 InkWell(
-                    onTap: (){
+                    onTap: () {
                       Navigator.pushNamed(context, RoutesName.screenTwo,
-                      arguments: {
-                        'title': 'data passed'
-                      }
-                      );
+                          arguments: {'title': 'data passed'});
                     },
                     child: Text('screen two')),
-
               ])),
     );
   }

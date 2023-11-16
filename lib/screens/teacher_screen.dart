@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:multi_role_app/utils/components/RoundButton.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utils/routes/routes_name.dart';
-
 
 class TeacherScreen extends StatefulWidget {
   const TeacherScreen({Key? key}) : super(key: key);
@@ -74,26 +74,17 @@ class _TeacherScreenState extends State<TeacherScreen> {
                 Text(type.toString()),
               ],
             ),
-            InkWell(
-              onTap: () async {
-                SharedPreferences sp = await SharedPreferences.getInstance();
-                sp.clear();
-                Navigator.pushNamed(context, RoutesName.signUp);
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(40),
-                child: Container(
-                  height: 40,
-                  width: double.infinity,
-                  color: Colors.blue,
-                  child: const Center(
-                      child: Text(
-                    'logOut',
-                    style: TextStyle(color: Colors.white),
-                  )),
-                ),
-              ),
+            const SizedBox(
+              height: 40,
             ),
+            RoundButton(
+                title: 'Log Out',
+                height: 40,
+                onPress: () async {
+                  SharedPreferences sp = await SharedPreferences.getInstance();
+                  sp.clear();
+                  Navigator.pushNamed(context, RoutesName.signUp);
+                }),
           ],
         ),
       ),

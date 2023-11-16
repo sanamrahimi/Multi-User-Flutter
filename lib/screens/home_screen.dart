@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:multi_role_app/utils/components/RoundButton.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utils/routes/routes_name.dart';
@@ -38,18 +40,19 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Text(
-              'Home Screen',
+              'Home view',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(
-              height: 10,
+              height: 30,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text('Email'),
                 Text(email.toString()),
@@ -59,32 +62,24 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 10,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text('Age'),
                 Text(age.toString()),
               ],
             ),
-            InkWell(
-              onTap: () async {
-                SharedPreferences sp = await SharedPreferences.getInstance();
-                sp.clear();
-                Navigator.pushNamed(context, RoutesName.signUp);
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(40),
-                child: Container(
-                  height: 40,
-                  width: double.infinity,
-                  color: Colors.blue,
-                  child: const Center(
-                      child: Text(
-                    'logOut',
-                    style: TextStyle(color: Colors.white),
-                  )),
-                ),
-              ),
+            const SizedBox(
+              height: 40,
             ),
+            RoundButton(
+                title: 'Log Out',
+                height: 40,
+                onPress: () async {
+                  SharedPreferences sp = await SharedPreferences.getInstance();
+                  sp.clear();
+                  Navigator.pushNamed(context, RoutesName.signUp);
+                }),
           ],
         ),
       ),
