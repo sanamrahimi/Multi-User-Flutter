@@ -1,4 +1,7 @@
-import 'package:multi_role_app/app/all_screens.dart';
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../utils/routes/routes_name.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -28,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home view'),
+        title: const Text('Home Screen'),
         automaticallyImplyLeading: false,
         centerTitle: true,
       ),
@@ -66,10 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () async {
                 SharedPreferences sp = await SharedPreferences.getInstance();
                 sp.clear();
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const LoginScreen()));
+                Navigator.pushNamed(context, RoutesName.signUp);
               },
               child: Padding(
                 padding: const EdgeInsets.all(40),

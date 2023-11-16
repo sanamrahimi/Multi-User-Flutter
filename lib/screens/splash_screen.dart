@@ -1,4 +1,8 @@
-import 'package:multi_role_app/app/all_screens.dart';
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../utils/routes/routes_name.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -23,24 +27,20 @@ class _SplashScreenState extends State<SplashScreen> {
     if (isLogin) {
       if (userType == 'student') {
         Timer(const Duration(seconds: 3), () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const StudentScreen()));
+          Navigator.pushNamed(context, RoutesName.studentsScreen);
         });
       } else if (userType == 'teacher') {
         Timer(const Duration(seconds: 3), () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const TeacherScreen()));
+          Navigator.pushNamed(context, RoutesName.teacherScreen);
         });
       } else {
         Timer(const Duration(seconds: 3), () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()));
+          Navigator.pushNamed(context, RoutesName.home);
         });
       }
     } else {
       Timer(const Duration(seconds: 3), () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const LoginScreen()));
+        Navigator.pushNamed(context, RoutesName.signUp);
       });
     }
   }
@@ -52,12 +52,18 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/flutter_image.png',
-              width: double.infinity,
-              fit: BoxFit.fitHeight,
+          children: const [
+            Center(
+              child: Text(
+                'Splash Screen',
+                style: TextStyle(fontSize: 30),
+              ),
             ),
+            // Image.asset(
+            //   'assets/flutter_image.png',
+            //   width: double.infinity,
+            //   fit: BoxFit.fitHeight,
+            // ),
           ],
         ),
       ),

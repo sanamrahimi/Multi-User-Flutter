@@ -1,4 +1,7 @@
-import 'package:multi_role_app/app/all_screens.dart';
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../utils/routes/routes_name.dart';
 
 class StudentScreen extends StatefulWidget {
   const StudentScreen({Key? key}) : super(key: key);
@@ -30,71 +33,79 @@ class _StudentScreenState extends State<StudentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Students view'),
+        title: const Text('Students Screen'),
         automaticallyImplyLeading: false,
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text('Email'),
-                Text(email.toString()),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text('Age'),
-                Text(age.toString()),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text('User Type'),
-                Text(type.toString()),
-              ],
-            ),
-            InkWell(
-              onTap: () async {
-                SharedPreferences sp = await SharedPreferences.getInstance();
-                sp.clear();
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const LoginScreen()));
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(40),
-                child: Container(
-                  height: 40,
-                  width: double.infinity,
-                  color: Colors.blue,
-                  child: const Center(
-                      child: Text(
-                    'logOut',
-                    style: TextStyle(color: Colors.white),
-                  )),
+                const SizedBox(
+                  height: 10,
                 ),
-              ),
-            ),
-          ],
-        ),
-      ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const Text('Email'),
+                    Text(email.toString()),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const Text('Age'),
+                    Text(age.toString()),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const Text('User Type'),
+                    Text(type.toString()),
+                  ],
+                ),
+                InkWell(
+                  onTap: () async {
+                    SharedPreferences sp =
+                        await SharedPreferences.getInstance();
+                    sp.clear();
+                    Navigator.pushNamed(context, RoutesName.signUp);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(40),
+                    child: Container(
+                      height: 40,
+                      width: double.infinity,
+                      color: Colors.blue,
+                      child: const Center(
+                          child: Text(
+                        'logOut',
+                        style: TextStyle(color: Colors.white),
+                      )),
+                    ),
+                  ),
+                ),
+
+                InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, RoutesName.screenTwo,
+                      arguments: {
+                        'title': 'data passed'
+                      }
+                      );
+                    },
+                    child: Text('screen two')),
+
+              ])),
     );
   }
 }

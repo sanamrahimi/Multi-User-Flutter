@@ -1,4 +1,8 @@
-import 'package:multi_role_app/app/all_screens.dart';
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../utils/routes/routes_name.dart';
+
 
 class TeacherScreen extends StatefulWidget {
   const TeacherScreen({Key? key}) : super(key: key);
@@ -37,14 +41,14 @@ class _TeacherScreenState extends State<TeacherScreen> {
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(
               height: 10,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 const Text('Email'),
                 Text(email.toString()),
@@ -54,7 +58,7 @@ class _TeacherScreenState extends State<TeacherScreen> {
               height: 10,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 const Text('Age'),
                 Text(age.toString()),
@@ -63,9 +67,8 @@ class _TeacherScreenState extends State<TeacherScreen> {
             const SizedBox(
               height: 10,
             ),
-
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 const Text('User Type'),
                 Text(type.toString()),
@@ -75,8 +78,7 @@ class _TeacherScreenState extends State<TeacherScreen> {
               onTap: () async {
                 SharedPreferences sp = await SharedPreferences.getInstance();
                 sp.clear();
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const LoginScreen()));
+                Navigator.pushNamed(context, RoutesName.signUp);
               },
               child: Padding(
                 padding: const EdgeInsets.all(40),
