@@ -3,7 +3,6 @@ import 'package:multi_role_app/utils/routes/routes_name.dart';
 
 import 'utils/routes/routes.dart';
 
-
 void main() {
   runApp(const MyApp());
 }

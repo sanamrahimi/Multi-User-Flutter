@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:multi_role_app/utils/components/RoundButton.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../utils/routes/routes_name.dart';
 
@@ -56,35 +57,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
             const SizedBox(
               height: 40,
             ),
-            InkWell(
-              onTap: () async {
-                SharedPreferences sp = await SharedPreferences.getInstance();
-                sp.setString('email', emailController.text.toString());
-                sp.setString('age', ageController.text.toString());
-                sp.setBool('isLogin', true);
 
-                // admin, student, teacher
-                sp.setString('userType', 'student');
-
-                if (sp.getString('userType') == 'teacher') {
-                  Navigator.pushNamed(context, RoutesName.teacherScreen);
-                } else if (sp.getString('userType') == 'student') {
-                  Navigator.pushNamed(context, RoutesName.studentsScreen);
-                } else {
-                  Navigator.pushNamed(context, RoutesName.home);
-                }
-              },
-              child: Container(
+            RoundButton(
                 height: 40,
-                width: double.infinity,
-                color: Colors.blue,
-                child: const Center(
-                    child: Text(
-                  'Sign Up',
-                  style: TextStyle(color: Colors.white),
-                )),
-              ),
-            ),
+                buttonColor: Colors.blue,
+                title: 'Sign Up',
+
+                onPress: () async {
+                  SharedPreferences sp = await SharedPreferences.getInstance();
+                  sp.setString('email', emailController.text.toString());
+                  sp.setString('age', ageController.text.toString());
+                  sp.setBool('isLogin', true);
+
+                  // admin, student, teacher
+                  // sp.setString('userType', 'student');
+
+                  if (sp.getString('userType') == 'teacher') {
+                    Navigator.pushNamed(context, RoutesName.teacherScreen);
+                  } else if (sp.getString('userType') == 'student') {
+                    Navigator.pushNamed(context, RoutesName.studentsScreen);
+                  } else {
+                    Navigator.pushNamed(context, RoutesName.home);
+                  }
+            }),
           ],
         ),
       ),
